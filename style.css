@@ -1,0 +1,229 @@
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  p {
+    margin: 0;
+    position: absolute;
+    font: 16px Verdana;
+    color: #eee;
+    height: 25px;
+    top: calc(100vh - 30px);
+    text-shadow: 0 0 2px white;
+  }
+  p a {
+    text-decoration: none;
+    color: #aaa;
+  }
+  span {
+    font-size: 11px;
+  }
+  p > a:first-of-type {
+    font-size: 20px;
+  }
+  body {
+    overflow: hidden;
+    background-color: #111;
+  }
+  
+  /* 3D Card Styles */
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  body {
+    background-color: #111;
+  }
+  .card {
+    width: 640px;
+    height: 400px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-perspective: 1200px;
+    perspective: 1200px;
+    transition: 1s;
+  }
+  .card:hover {
+    transform: rotate(-5deg);
+  }
+  .card:hover .outside {
+    transform: rotateY(-130deg);
+  }
+  .outside,
+  .inside {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    left: 50.1%;
+  }
+  .inside {
+    background: linear-gradient(to right, #e7e7e7, #ffffff 30%);
+    line-height: 3;
+    padding: 0 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    left: 50%;
+  }
+  .outside {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    z-index: 1;
+    transform-origin: left;
+    transition: 2s;
+    cursor: pointer;
+  }
+  .front,
+  .back {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: rotateX(0deg);
+  }
+  .front {
+    background-color: #ffffff;
+  }
+  .back {
+    transform: rotateY(180deg);
+    background: linear-gradient(to left, #e7e7e7, #ffffff 30%);
+  }
+  /* ปรับขนาดเค้ก */
+.cake {
+    width: 150px; /* ขนาดเค้กเล็กลง */
+    position: absolute;
+    bottom: 10px; /* ลดระยะห่างจากด้านล่าง */
+    left: 50%; 
+    transform: translateX(-50%); /* จัดให้อยู่ตรงกลาง */
+  }
+  
+  /* แต่ละ layer ของเค้ก */
+  .top-layer,
+  .middle-layer,
+  .bottom-layer {
+    height: 40px; /* ปรับความสูงให้เล็กลง */
+    width: 120px; /* ปรับขนาดความกว้างให้เล็กลง */
+    background-repeat: repeat;
+    background-size: 30px 50px;
+    background-position: 14px 0;
+    background-image: linear-gradient(
+        transparent 25px,
+        #fedbab 25px,
+        #fedbab 30px,
+        transparent 30px
+      ),
+      radial-gradient(circle at 15px 2.5px, #994c10 15px, #fcbf29 15.5px);
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    margin: auto;
+  }
+  
+  /* ปรับขนาดแต่ละเลเยอร์ */
+  .middle-layer {
+    transform: scale(0.85);
+    top: 3px;
+  }
+  
+  .top-layer {
+    transform: scale(0.7);
+    top: 13px;
+  }
+  
+  /* ปรับขนาดเทียน */
+  .candle {
+    height: 25px; /* ลดขนาดเทียน */
+    width: 8px;   /* ลดขนาดความกว้างของเทียน */
+    background: repeating-linear-gradient(
+      45deg,
+      #fd3018 0,
+      #fd3018 5px,
+      #ffa89e 5px,
+      #ffa89e 10px
+    );
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 102px; /* ลดความสูงให้ต่ำลงเพื่อปรับตามเค้ก */
+  }
+  
+  /* ปรับขนาดเปลวไฟ */
+  .candle:before {
+    content: "";
+    position: absolute;
+    height: 8px; /* ลดขนาดเปลวไฟ */
+    width: 8px;
+    background-color: #ffa500;
+    border-radius: 0 50% 50% 50%;
+    bottom: 24px;
+    transform: rotate(45deg);
+  }
+
+.bubbles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* ใช้ vw เพื่อให้ครอบคลุมหน้าจอทั้งกว้าง */
+    height: 100vh; /* ใช้ vh เพื่อให้ครอบคลุมหน้าจอทั้งสูง */
+    overflow: hidden;
+    z-index: -1; /* ให้อยู่ด้านหลัง card */
+  }
+  
+  /* ปรับแต่งการแสดงผลของ bubble */
+  .bubble {
+    position: absolute;
+    bottom: -50px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: bubbleAnimation 15s infinite ease-in-out;
+  }
+  
+  /* ปรับแต่ง animation ของ bubble ให้ลอยสูงขึ้น */
+  @keyframes bubbleAnimation {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(-50vh) scale(1.2); /* ลอยขึ้นครึ่งหน้าจอ */
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-100vh) scale(1); /* ลอยออกจากหน้าจอ */
+      opacity: 0.3;
+    }
+  }
+  
+ /* ปรับแต่งรูปภาพในหน้าแรกของการ์ด */
+ .profile-img {
+    width: 250px; /* ขยายขนาดของรูปภาพ */
+    height: 250px; /* ขยายขนาดของรูปภาพ */
+    border-radius: 50%; /* ทำให้รูปภาพเป็นวงกลม */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* ปรับเงาให้เข้มขึ้นเล็กน้อย */
+    margin-bottom: 20px; /* เพิ่มระยะห่างจากด้านล่าง */
+  }
+
+    .front {
+    background-color: #ffffff;
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    align-items: center;    /* จัดให้อยู่ตรงกลางแนวนอน */
+    padding: 20px;
+    text-align: center;
+  }
+
+  .front h1 {
+  font-size: 24px; /* ขนาดของข้อความ */
+  color: #333; /* สีของข้อความ */
+  margin-top: 20px; /* ระยะห่างด้านบน */
+  text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+}
